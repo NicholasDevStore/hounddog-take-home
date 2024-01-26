@@ -20,6 +20,12 @@ Visit https://hounddog-take-home.vercel.app/ in order to see the deployed previe
 - Create new data element.
 - Delete data element.
 
+## TODO Features
+
+- Edit data element
+- Filter and Sort data elements by name, description, etc.
+- Add unit and e2e testing
+
 ## Getting Started
 
 First, create .env.local in the root folder of project and add api url and auth token properly
