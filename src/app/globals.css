@@ -32,7 +32,6 @@ th {
   text-align: left;
   padding: 8px;
   overflow-wrap: anywhere;
-  min-width: 80px;
 }
 
 tr:nth-child(even) {
