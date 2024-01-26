@@ -14,6 +14,12 @@ Visit https://hounddog-take-home.vercel.app/ in order to see the deployed previe
 - [`SWR`](https://swr.vercel.app/)
 - [`ESLint`](https://eslint.org/)
 
+## Main Features
+
+- List data elements by pagination.
+- Create new data element.
+- Delete data element.
+
 ## Getting Started
 
 First, create .env.local in the root folder of project and add api url and auth token properly

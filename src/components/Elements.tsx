@@ -1,14 +1,13 @@
 "use client";
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { fetcher } from "../util";
-import { DataElementOut, PagedDataElementOut } from "../types";
-import { deleteElement } from "../util/api";
-import { useScrollToBottom } from "../hooks";
 import useSWRInfinite from "swr/infinite";
 import useSWRMutation from "swr/mutation";
-
-const FETCH_COUNT = 50;
+import { FETCH_COUNT, deleteElement, fetcher } from "@/src/lib";
+import { DataElementOut, PagedDataElementOut } from "@/src/types";
+import { useScrollToBottom } from "@/src/hooks";
+import PageLoading from "./PageLoading";
+import PageError from "./PageError";
 
 // A function to get the SWR key of each page,
 // its return value will be accepted by `fetcher`.
@@ -30,6 +29,7 @@ const Elements: React.FC = () => {
   const { trigger } = useSWRMutation("/api/data-elements", deleteElement);
 
   const handleScrollToBottom = () => {
+    // When user scrolls to the bottom of the screen, pagination is done
     setSize(size + 1);
   };
 
@@ -56,13 +56,13 @@ const Elements: React.FC = () => {
     push("/create-element");
   };
 
-  if (error) return <div className="p-8">An error has occurred.</div>;
-  if (!data) return <div className="p-8">Loading...</div>;
+  if (error) return <PageError />;
+  if (!data?.length) return <PageLoading />;
 
   return (
     <div ref={scrollRef} className="p-8 overflow-auto h-screen">
-      <div className="flex items-center items-center justify-between py-2">
-        <span>Total count: {data[0].count}</span>
+      <div className="flex items-center justify-between py-2">
+        <span>Total count: {data[0]?.count}</span>
         <button
           className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
           onClick={handleCreate}
@@ -97,7 +97,7 @@ const Elements: React.FC = () => {
                     <svg
                       aria-hidden="true"
                       role="status"
-                      className="inline w-4 h-4 me-3 text-white animate-spin"
+                      className="inline w-8 h-8 text-white animate-spin"
                       viewBox="0 0 100 101"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
