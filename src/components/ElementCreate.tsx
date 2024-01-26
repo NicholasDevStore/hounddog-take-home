@@ -3,6 +3,7 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Sensitivity } from "../types";
 import { createElement } from "../util/api";
+import useSWRMutation from "swr/mutation";
 
 const allSensitivity = [
   Sensitivity.Critical,
@@ -12,6 +13,7 @@ const allSensitivity = [
 
 const ElementCreate: React.FC = () => {
   const { push } = useRouter();
+  const { trigger } = useSWRMutation("/api/data-elements", createElement);
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [includePattern, setIncludePattern] = React.useState("");
@@ -25,7 +27,7 @@ const ElementCreate: React.FC = () => {
       setValidation(false);
       return;
     }
-    const res = await createElement({
+    const res = await trigger({
       name,
       description,
       includePattern,

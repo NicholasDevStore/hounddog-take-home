@@ -1,34 +1,33 @@
 import { Sensitivity } from "../types";
 
-export const deleteElement = async (elementId: string) => {
-  const res = await fetch(`/api/data-elements?id=${elementId}`, {
+export const deleteElement = async (
+  url: string,
+  { arg }: { arg: { id: string } }
+) => {
+  const { id } = arg;
+  const res = await fetch(`${url}?id=${id}`, {
     method: "DELETE",
   });
-  return await res.json();
+  return res.status;
 };
 
-export const createElement = async ({
-  name,
-  description,
-  includePattern,
-  excludePattern,
-  sensitivity,
-}: {
-  name: string;
-  description?: string;
-  includePattern: string;
-  excludePattern?: string;
-  sensitivity: Sensitivity;
-}) => {
-  const res = await fetch("/api/data-elements", {
+export const createElement = async (
+  url: string,
+  {
+    arg,
+  }: {
+    arg: {
+      name: string;
+      description?: string;
+      includePattern: string;
+      excludePattern?: string;
+      sensitivity: Sensitivity;
+    };
+  }
+) => {
+  const res = await fetch(url, {
     method: "POST",
-    body: JSON.stringify({
-      name,
-      description,
-      includePattern,
-      excludePattern,
-      sensitivity,
-    }),
+    body: JSON.stringify(arg),
   });
   return await res.json();
 };

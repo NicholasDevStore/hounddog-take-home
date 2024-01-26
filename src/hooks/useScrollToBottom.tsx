@@ -25,7 +25,7 @@ export const useScrollToBottom = (callback: () => void) => {
         scrollElement.removeEventListener("scroll", handleScroll);
       };
     }
-  }, [callback]);
+  }, [callback, scrollRef]);
 
   return scrollRef;
 };
