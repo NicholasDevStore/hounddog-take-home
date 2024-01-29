@@ -61,7 +61,7 @@ const ElementCreate: React.FC = () => {
     setSensitivity(e.target.value as Sensitivity);
 
   return (
-    <div className="flex flex-col items-center justify-between p-8 h-screen overflow-auto">
+    <div className="flex flex-col items-center p-8 h-screen overflow-auto">
       <h1 className="text-2xl font-bold leading-7 text-gray-900 mb-8">
         Create New Element
       </h1>
@@ -203,7 +203,7 @@ const ElementCreate: React.FC = () => {
                 />
               </svg>
             )}
-            Create
+            Create New
           </button>
         </div>
       </form>
