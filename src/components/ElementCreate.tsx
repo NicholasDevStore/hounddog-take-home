@@ -61,8 +61,8 @@ const ElementCreate: React.FC = () => {
     setSensitivity(e.target.value as Sensitivity);
 
   return (
-    <div className="flex flex-col items-center justify-between p-4">
-      <h1 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight mb-8">
+    <div className="flex flex-col items-center justify-between p-8 h-screen overflow-auto">
+      <h1 className="text-2xl font-bold leading-7 text-gray-900 mb-8">
         Create New Element
       </h1>
       <form className="w-full max-w-lg">
